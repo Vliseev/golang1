@@ -49,8 +49,8 @@ func sum(in ...int) (result int) {
 }
 
 func main() {
-	// fmt.Println(multipleNamedReturn(false))
-	// return
+	 //fmt.Println(multipleNamedReturn(true))
+	 //return
 
 	nums := []int{1, 2, 3, 4}
 	fmt.Println(nums, sum(nums...))
