@@ -20,10 +20,10 @@ func startWorker(in int, wg *sync.WaitGroup, quotaCh chan struct{}) {
 	for j := 0; j < iterationsNum; j++ {
 		fmt.Printf(formatWork(in, j))
 
-		if j%2 == 0 {
-			<-quotaCh             // ratelim.go, возвращаем слот
-			quotaCh <- struct{}{} // ratelim.go, берём слот
-		}
+		//if j%3 == 0 {
+		//	<-quotaCh             // ratelim.go, возвращаем слот
+		//	quotaCh <- struct{}{} // ratelim.go, берём слот
+		//}
 
 		runtime.Gosched() // даём поработать другим горутинам
 	}
