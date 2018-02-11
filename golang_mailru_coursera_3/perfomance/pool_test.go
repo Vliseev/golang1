@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-const iterNum = 100
+//const iterNum = 100
 
 type PublicPage struct {
 	ID          int

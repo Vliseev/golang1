@@ -17,7 +17,7 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjson9f2eff5fDecodeSt(in *jlexer.Lexer, out *User) {
+func easyjson1982c6fcDecodeMailCourseGolangMailruCoursera3PerfomanceJson(in *jlexer.Lexer, out *Vasia) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -42,10 +42,6 @@ func easyjson9f2eff5fDecodeSt(in *jlexer.Lexer, out *User) {
 			out.RealName = string(in.String())
 		case "Login":
 			out.Login = string(in.String())
-		case "Flags":
-			out.Flags = int(in.Int())
-		case "Status":
-			out.Status = int(in.Int())
 		default:
 			in.SkipRecursive()
 		}
@@ -56,63 +52,63 @@ func easyjson9f2eff5fDecodeSt(in *jlexer.Lexer, out *User) {
 		in.Consumed()
 	}
 }
-func easyjson9f2eff5fEncodeSt(out *jwriter.Writer, in User) {
+func easyjson1982c6fcEncodeMailCourseGolangMailruCoursera3PerfomanceJson(out *jwriter.Writer, in Vasia) {
 	out.RawByte('{')
 	first := true
 	_ = first
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"Id\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.Int(int(in.Id))
 	}
-	first = false
-	out.RawString("\"Id\":")
-	out.Int(int(in.Id))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"RealName\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.RealName))
 	}
-	first = false
-	out.RawString("\"RealName\":")
-	out.String(string(in.RealName))
-	if !first {
-		out.RawByte(',')
+	{
+		const prefix string = ",\"Login\":"
+		if first {
+			first = false
+			out.RawString(prefix[1:])
+		} else {
+			out.RawString(prefix)
+		}
+		out.String(string(in.Login))
 	}
-	first = false
-	out.RawString("\"Login\":")
-	out.String(string(in.Login))
-	if !first {
-		out.RawByte(',')
-	}
-	first = false
-	out.RawString("\"Flags\":")
-	out.Int(int(in.Flags))
-	if !first {
-		out.RawByte(',')
-	}
-	first = false
-	out.RawString("\"Status\":")
-	out.Int(int(in.Status))
 	out.RawByte('}')
 }
 
 // MarshalJSON supports json.Marshaler interface
-func (v User) MarshalJSON() ([]byte, error) {
+func (v Vasia) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson9f2eff5fEncodeSt(&w, v)
+	easyjson1982c6fcEncodeMailCourseGolangMailruCoursera3PerfomanceJson(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
-func (v User) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson9f2eff5fEncodeSt(w, v)
+func (v Vasia) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson1982c6fcEncodeMailCourseGolangMailruCoursera3PerfomanceJson(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
-func (v *User) UnmarshalJSON(data []byte) error {
+func (v *Vasia) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson9f2eff5fDecodeSt(&r, v)
+	easyjson1982c6fcDecodeMailCourseGolangMailruCoursera3PerfomanceJson(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
-func (v *User) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson9f2eff5fDecodeSt(l, v)
+func (v *Vasia) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson1982c6fcDecodeMailCourseGolangMailruCoursera3PerfomanceJson(l, v)
 }
