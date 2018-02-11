@@ -113,7 +113,7 @@ func CombineResults(in, out chan interface{}) {
 
 }
 
-func ExecutePipeline(jobs []job) {
+func ExecutePipeline(jobs ... job) {
 	var numWorker = len(jobs)
 
 	var chans []chan interface{}
