@@ -1,0 +1,14 @@
+mode: set
+coursera/golang1/test/serv.go:16.60,18.13 2 1
+coursera/golang1/test/serv.go:19.12,21.58 2 1
+coursera/golang1/test/serv.go:22.16,24.61 2 1
+coursera/golang1/test/serv.go:25.23,27.38 2 1
+coursera/golang1/test/serv.go:28.26,29.14 1 1
+coursera/golang1/test/serv.go:30.10,31.48 1 1
+coursera/golang1/test/serv.go:39.61,42.16 3 1
+coursera/golang1/test/serv.go:45.2,48.16 3 1
+coursera/golang1/test/serv.go:52.2,55.16 3 1
+coursera/golang1/test/serv.go:58.2,58.20 1 1
+coursera/golang1/test/serv.go:42.16,44.3 1 0
+coursera/golang1/test/serv.go:48.16,50.3 1 0
+coursera/golang1/test/serv.go:55.16,57.3 1 1

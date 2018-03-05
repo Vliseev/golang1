@@ -54,7 +54,7 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">coursera/golang1/golang_mailru_coursera_3/testing/main.go (85.7%)</option>
+				<option value="file0">coursera/golang1/test/serv.go (91.3%)</option>
 				
 				</select>
 			</div>
@@ -71,29 +71,61 @@
 		<pre class="file" id="file0" style="display: none">package main
 
 import (
+        "net/http"
+        "io/ioutil"
+        "io"
         "encoding/json"
-        "fmt"
 )
 
-type User struct {
-        ID int
+type CheckoutResult struct {
+        Status  int
+        Balance int
+        Err     string
 }
 
-var data = map[string][]byte{
-        "ok":   []byte(`{"ID": 27}`),
-        "fail": []byte(`{"ID": 27`),
-}
-
-func GetUser(key string) (*User, error) <span class="cov8" title="1">{
-        if jsonStr, ok := data[key]; ok </span><span class="cov8" title="1">{
-                user := &amp;User{}
-                err := json.Unmarshal(jsonStr, user)
-                if err != nil </span><span class="cov0" title="0">{
-                        return nil, fmt.Errorf("Cant decode json")
-                }</span>
-                <span class="cov8" title="1">return user, nil</span>
+func CheckoutDummy(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
+        key := r.FormValue("id")
+        switch key </span>{
+        case "42":<span class="cov8" title="1">
+                w.WriteHeader(http.StatusOK)
+                io.WriteString(w, `{"status": 200, "balance": 100500}`)</span>
+        case "100500":<span class="cov8" title="1">
+                w.WriteHeader(http.StatusOK)
+                io.WriteString(w, `{"status": 400, "err": "bad_balance"}`)</span>
+        case "__broken_json":<span class="cov8" title="1">
+                w.WriteHeader(http.StatusOK)
+                io.WriteString(w, `{"status": 400`)</span> //broken json
+        case "__internal_error":<span class="cov8" title="1">
+                fallthrough</span>
+        default:<span class="cov8" title="1">
+                w.WriteHeader(http.StatusInternalServerError)</span>
         }
-        <span class="cov8" title="1">return nil, fmt.Errorf("User doesnt exist")</span>
+}
+
+type Cart struct {
+        PaymentApiURL string
+}
+
+func (c *Cart) Checkout(id string) (*CheckoutResult, error) <span class="cov8" title="1">{
+        url := c.PaymentApiURL + "?id=" + id
+        resp, err := http.Get(url)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">defer resp.Body.Close()
+
+        data, err := ioutil.ReadAll(resp.Body)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov8" title="1">result := &amp;CheckoutResult{}
+
+        err = json.Unmarshal(data, result)
+        if err != nil </span><span class="cov8" title="1">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">return result, nil</span>
 }
 </pre>
 		
