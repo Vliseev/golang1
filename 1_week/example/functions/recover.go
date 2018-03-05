@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func deferTest() {
@@ -17,6 +18,7 @@ func deferTest() {
 		}
 	}()
 	fmt.Println("Some userful work")
+	math.Sqrt()
 	panic("something bad happend")
 	return
 }
